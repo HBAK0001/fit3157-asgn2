@@ -3,41 +3,49 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Canvas Drawing App</title>
-  <link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	
+	<div id="alert-message"><h4>Is there anyone there?</h4><p id="message-text">If you're still drawing, let us know by touching below. The drawing will erase in 15 seconds.</p><button onClick="cancel()">Still Here!</button></div>
   <div id="app">
-  
-    <nav class="menu">
+    <nav class="menu color-menu" id="colors">
       <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
       <label class="menu-open-button" for="menu-open">
-        <span class="dot"></span>
+        <span class="dot"></span><i class="fas fa-palette button-icon"></i>
         <!--<span class="hamburger hamburger-1"></span>
         <span class="hamburger hamburger-2"></span>
         <span class="hamburger hamburger-3"></span>-->
       </label>
-      
-      <img src="images/blue.png" data-color="#0000cc" class="menu-item">
-      <a href="#" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
+	  <!--<a href="#" class="menu-item"> <i class="fa fa-hdd"></i> </a>
       <a href="#" class="menu-item"> <i class="fa fa-plus"></i> </a>
       <a href="#" class="menu-item"> <i class="fa fa-heart"></i> </a>
-      <a href="#" class="menu-item"> <i class="fa fa-envelope"></i> </a>
-      
-      
+      <a href="#" class="menu-item"> <i class="fa fa-envelope"></i> </a>-->
+      <img src="images/black.png" data-color="#000000" class="active menu-item" />
+      <img src="images/white.png" data-color="#f9f9f9" class="menu-item"/>
+      <img src="images/red.png" data-color="#cc0000" class="menu-item"/>
+      <img src="images/yellow.png" data-color="#ffcc00" class="menu-item"/>
+      <img src="images/blue.png" data-color="#0000cc" class="menu-item">
     </nav>
-    <div id="tools" class="toolbar">
-      <img src="images/small.png" data-mode="draw" data-size="5" class="active" />
-      <img src="images/medium.png" data-mode="draw" data-size="10" />
-      <img src="images/large.png" data-mode="draw" data-size="20" />
-      <img src="images/eraser.png" data-mode="erase" data-size="10" />
-      <img src="images/undo.png" data-action="undo" class="disabled" />
-      <img src="images/delete.png" data-action="delete" />
+    <div id="tools" class="menu tool-menu">
+		<input type="checkbox" href="#" class="menu-open-tool" name="menu-open-tool" id="menu-open-tool"/>
+		<label class="menu-open-tool-button" for="menu-open-tool">
+		<span class="dot"></span><i class="fas fa-paint-brush button-icon"></i>
+		<!--<span class="hamburger hamburger-1"></span>
+		<span class="hamburger hamburger-2"></span>
+		<span class="hamburger hamburger-3"></span>-->
+      </label>
+      <img src="images/small.png" data-mode="draw" data-size="10" class="active menu-item-tool"/>
+      <img src="images/medium.png" data-mode="draw" data-size="15" class="menu-item-tool"/>
+      <img src="images/large.png" data-mode="draw" data-size="20" class="menu-item-tool"/>
+      <img src="images/eraser.png" data-mode="erase" data-size="10" class="menu-item-tool"/>
+      <img src="images/undo.png" data-action="undo" class="disabled menu-item-tool"/>
+      <img src="images/delete.png" data-action="delete" class="menu-item-tool"/>
     </div>
-    
     <canvas id="canvas" width="600" height="400"></canvas>
     
-    <div id="colors" class="toolbar">
+    
+    <!--<div id="colors" class="toolbar">
       <img src="images/black.png" data-color="#000000" class="active" />
       <img src="images/red.png" data-color="#cc0000" />
       <img src="images/yellow.png" data-color="#ffcc00" />
@@ -45,17 +53,15 @@
       <img src="images/cyan.png" data-color="#00cccc" />
       <img src="images/blue.png" data-color="#0000cc" />
       <img src="images/magenta.png" data-color="#cc00cc" />
-    </div>
-  
-  
-  
+    </div>-->
   </div>
+  <div id="canvas-cover"></div>
 
-  
+
 
   <!-- filters --->
   
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" >
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
   <defs>
     <filter id="shadowed-goo">
         
